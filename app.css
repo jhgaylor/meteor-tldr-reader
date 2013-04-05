@@ -1,0 +1,15 @@
+body {padding-top:60px;}
+
+#tldrs_list {
+    background-color:#eee;
+    color: #222;
+    
+}
+    #tldrs_list li{
+        padding: .5em;
+    }
+
+    #tldrs_list li.unread{
+        font-weight: bold;
+        
+    }

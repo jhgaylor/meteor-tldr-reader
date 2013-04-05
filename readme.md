@@ -78,3 +78,18 @@ I needed some TLDR's to start creating the UI with, so I got some!  Here is the 
 
 I then called the method via the console. Now I have 10 data points to start working on a ui.
 My app doesn't have any need to restructure the data provided by TLDR.  All the server side work will be keep state synced and make requests to tldr.io
+
+### Added custom field readBy
+I added a field to each tldr record i get to keep track of which users have read the article.  I did this by modifying my helper function
+
+    function get_data () {
+        client.getLatestTldrs(10, function(e, data){
+            data.forEach(function (item) {
+                item.readBy = item.readyBy || {}
+                Tldrs.insert(item)
+            })
+        });
+    }
+
+### Admire the magic
+Mongo accepted the tldr id as the pk automatically and won't insert duplicate tl;dr items.  Booyah! 

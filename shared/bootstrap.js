@@ -1,5 +1,6 @@
 Tldrs = new Meteor.Collection("tldrs");
 
+
 Meteor.startup(function () {
     c = new Client({
         name: "jakegaylor",
@@ -8,10 +9,11 @@ Meteor.startup(function () {
 
 });
 
-function get_data () {
-    c.getLatestTldrs(10, function(e, data){
+function get_data (client) {
+    client.getLatestTldrs(10, function(e, data){
         data.forEach(function (item) {
-            TLDRS.insert(item)
+            item.readBy = item.readyBy || []
+            Tldrs.insert(item)
         })
     });
 }

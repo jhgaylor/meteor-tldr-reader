@@ -4,9 +4,28 @@
 
 <body>
     <div class="container">
+     <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+          <a class="brand" href="./index.html">Bootstrap</a>
+        
+
+        <div class="nav-collapse collapse pull-right">
+            <ul class="nav">
+                <li><a href="#">{{loginButtons}}</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    </div>
         <div class="row">
             <div class="span12">
-                {{loginButtons}}
+                
             </div>
         </div>
         <div class="row">
@@ -24,7 +43,7 @@
 </body>
 
 <template name="tldrs_list">
-    <ul>
+    <ul id="tldrs_list" class="unstyled">
     {{#each tldrs}}
         {{> tldrs_list_item}}
     {{/each}}
@@ -32,15 +51,25 @@
 </template>
 
 <template name="tldrs_list_item">
-    <li>{{slug}}</li>
+    <li class="{{wasRead}}">
+        {{slug}}
+    </li>
 </template>
 
 
 
 <template name="read_tldr">
     {{# if tldr}}
-    <h1>{{tldr.title}}</h1>
-    
-        <a href="{{tldr.originalUrl}}" target="_blank">Original</a>
+        <h4>{{tldr.title}}</h4>
+        <ul class="nav nav-tabs">
+            <li><a href="http://tldr.io/tldrs/{{tldr._id}}/" target="_blank">tldr.io</a></li>
+            <li><a href="{{tldr.originalUrl}}" target="_blank">Original</a></li>
+        </ul>
+
+        <ul>
+            {{# each tldr.summaryBullets}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
     {{/if}}
 </template>
