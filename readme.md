@@ -1,23 +1,23 @@
 ## Log:
 
-### Installed meteored
+## Installed meteor
 
-### created meteor app
+## created meteor app
     meteor create tldr
     mkdir client lib public server shared
 
 
-### Added Meteor components
+## Added Meteor components
     meteor add accounts-ui accounts-password bootstrap jquery
 
-### Removed Meteor components
+## Removed Meteor components
     meteor remove autopublish
 
-### cloned my repo of the js client
+## cloned my repo of the js client
     cd lib/
     git clone https://github.com/jhgaylor/api-js-client.git
 
-### created the tldrs collection
+## created the tldrs collection
     in shared/bootstrap.js
     
     ```
@@ -26,7 +26,7 @@
 
     This gives access to the collection to both the server and the client
 
-### Published the tldrs collection
+## Published the tldrs collection
     in server/bootstrap.js
     
     ```
@@ -37,7 +37,7 @@
 
     This allows subscribers to access the collection.  For now I want all the records available to my client.
 
-### Subscribed the client to the tldrs collection
+## Subscribed the client to the tldrs collection
     in client/app.js
 
     ```
