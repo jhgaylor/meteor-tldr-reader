@@ -55,7 +55,7 @@ Template.tldrs_list.events({
     Session.set('language_filter_value', $_.val().split(','))
   },
   'click #get_data': function () {
-    c.getLatestTldrs(10, function(e, data){
+    c.getLatestTldrs(50, function(e, data){
         data.forEach(function (item) {
             item.readBy = item.readyBy || []
             Tldrs.insert(item)

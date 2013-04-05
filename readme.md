@@ -1,3 +1,6 @@
+## Running Demo @ http://tldreader.meteor.com/
+Please don't spam the red button! It sends an http request to tldr.io and caches the results in mongo.  Spamming it won't give you new data.
+
 ## How to setup
 Disclaimer: This probably won't work.  Don't throw things at me if it doesn't
 
@@ -92,4 +95,6 @@ I added a field to each tldr record i get to keep track of which users have read
     }
 
 ### Admire the magic
-Mongo accepted the tldr id as the pk automatically and won't insert duplicate tl;dr items.  Booyah! 
+Mongo accepted the tldr id as the pk automatically and won't insert duplicate tl;dr items.  Booyah!
+
+ 
