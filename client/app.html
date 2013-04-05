@@ -50,13 +50,13 @@
 <template name="tldrs_list">
     <div class="row">
         <div class="span4">
-        
-            <div class="btn-group">
 
+            <div class="btn-group">
                 <button id="all-items" class="btn {{#if activeSelector 'all'}}active{{/if}}">All</button>
                 <button id="unread-items" class="btn {{#if activeSelector 'unread'}}active{{/if}}">Unread</button>
                 <button id="read-items" class="btn {{#if activeSelector 'read'}}active{{/if}}">Read</button>
             </div>
+            Languages: <input id="language_selection" type="textbox" value="en, de">
         </div>
     </div>
     <ul id="tldrs_list" class="unstyled">

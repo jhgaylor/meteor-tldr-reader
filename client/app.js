@@ -1,10 +1,13 @@
 Meteor.subscribe('tldrs');
 
 Meteor.startup(function () {
-  
+  Session.setDefault('read_filter', {});
+  Session.setDefault('read_filter_selection', 'all');
+  Session.setDefault('language_filter_value', ["en", "de"]);
 });
 
 Template.current_tldr_reader.tldr = function () {
+  Meteor.call('createLanguageFilter', Session.get('language_filter_value'));
   return Tldrs.findOne({_id:Session.get('current_tldr')});
 };
 
@@ -15,15 +18,19 @@ Template.current_tldr_reader.events({
 });
 
 Template.tldrs_list.tldrs = function () {
-  Session.setDefault('read_filter', {});
-  return Tldrs.find(Session.get('read_filter')).fetch();
+  console.log(Session.get('language_filter'))
+  //this probably needs to be refactored.  My application will probably depend on swapping the sets of filters
+  //easily and quickly.  for instance, different 'columns' can have different filters (authors, terms, languages)
+  return Tldrs.find({$and: [Session.get('read_filter'), Session.get('language_filter')]}).fetch();
 };
 
 
 Template.tldrs_list.helpers({
   activeSelector: function (other) {
     return Session.get('read_filter_selection') == other
-  }
+  },
+  
+
 })
 
 Template.tldrs_list.events({
@@ -44,6 +51,10 @@ Template.tldrs_list.events({
     Session.set('read_filter', {readBy: {$in: [Meteor.userId()]}});
     Session.set('read_filter_selection', 'read')
   },
+  'change #language_selection': function (event) {
+    $_ = $(event.currentTarget);
+    Session.set('language_filter_value', $_.val().split(','))
+  }
 });
 
 Template.tldrs_list_item.wasRead = function (tldr) {  

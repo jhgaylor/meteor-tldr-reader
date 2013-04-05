@@ -25,5 +25,12 @@ Meteor.methods({
     tldr_read: function (tldr_id, user_id){
         Tldrs.update(tldr_id, {$addToSet: {readBy:user_id}});
     },
+    filters: function (args) {
+        return { $and: args }
+    },
+    createLanguageFilter: function (languages) {
+        Session.set('language_filter', {'language.language': { $in: languages } });
+    }
+    
     
 });
