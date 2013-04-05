@@ -18,7 +18,6 @@ Template.current_tldr_reader.events({
 });
 
 Template.tldrs_list.tldrs = function () {
-  console.log(Session.get('language_filter'))
   //this probably needs to be refactored.  My application will probably depend on swapping the sets of filters
   //easily and quickly.  for instance, different 'columns' can have different filters (authors, terms, languages)
   return Tldrs.find({$and: [Session.get('read_filter'), Session.get('language_filter')]}).fetch();
@@ -54,6 +53,14 @@ Template.tldrs_list.events({
   'change #language_selection': function (event) {
     $_ = $(event.currentTarget);
     Session.set('language_filter_value', $_.val().split(','))
+  },
+  'click #get_data': function () {
+    c.getLatestTldrs(10, function(e, data){
+        data.forEach(function (item) {
+            item.readBy = item.readyBy || []
+            Tldrs.insert(item)
+        })
+    });
   }
 });
 
