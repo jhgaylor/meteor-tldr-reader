@@ -50,8 +50,8 @@ This will tell the client to listen for changes to tldrs
 For now I am exposing the TLDR api client to both the server and client, but I won't be programming the client to use the TLDR api client.  It's just for access via the chrome console
 
     c = new Client({
-        name: "jakegaylor",
-        key: "8P5mD26fGye43y66K5p5"
+        name: "name",
+        key: "key"
     });
 
 
