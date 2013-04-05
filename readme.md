@@ -1,3 +1,12 @@
+## How to setup
+Disclaimer: This probably won't work.  Don't throw things at me if it doesn't
+
+ * install meteor
+ * clone the repo
+ * run meteor
+ * navigate to app
+ * run get_data() in the console
+
 ## Log:
 
 ### Installed meteor

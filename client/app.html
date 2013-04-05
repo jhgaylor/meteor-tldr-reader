@@ -38,5 +38,9 @@
 
 
 <template name="read_tldr">
-    <p>{{tldr.slug}}</p>
+    {{# if tldr}}
+    <h1>{{tldr.title}}</h1>
+    
+        <a href="{{tldr.originalUrl}}" target="_blank">Original</a>
+    {{/if}}
 </template>
