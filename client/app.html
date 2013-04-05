@@ -1,0 +1,42 @@
+<head>
+  <title>TL;DR;</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                {{loginButtons}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4">
+               {{> tldrs_list}}
+            </div>
+            
+            <div class="span8">
+                {{> read_tldr}}
+            </div>
+                
+        </div>
+
+    </div>
+</body>
+
+<template name="tldrs_list">
+    <ul>
+    {{#each tldrs}}
+        {{> tldrs_list_item}}
+    {{/each}}
+    </ul>
+</template>
+
+<template name="tldrs_list_item">
+    <li>{{slug}}</li>
+</template>
+
+
+
+<template name="read_tldr">
+    <p>{{tldr.slug}}</p>
+</template>
