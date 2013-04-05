@@ -12,8 +12,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-          <a class="brand" href="./index.html">Bootstrap</a>
-        
+          <a class="brand" href="./index.html">tldreader</a>
+        <div class="nav-collapse collapse ">
+            <ul class="nav">
+                <li><a href="http://www.meteor.com/" target="_blank">Meteor</a></li>
+                <li><a href="http://tldr.io/" target="_blank">tl;dr</a></li>
+            </ul>
+        </div>        
 
         <div class="nav-collapse collapse pull-right">
             <ul class="nav">
@@ -34,7 +39,7 @@
             </div>
             
             <div class="span8">
-                {{> read_tldr}}
+                {{> current_tldr_reader}}
             </div>
                 
         </div>
@@ -43,6 +48,17 @@
 </body>
 
 <template name="tldrs_list">
+    <div class="row">
+        <div class="span4">
+        
+            <div class="btn-group">
+
+                <button id="all-items" class="btn {{#if activeSelector 'all'}}active{{/if}}">All</button>
+                <button id="unread-items" class="btn {{#if activeSelector 'unread'}}active{{/if}}">Unread</button>
+                <button id="read-items" class="btn {{#if activeSelector 'read'}}active{{/if}}">Read</button>
+            </div>
+        </div>
+    </div>
     <ul id="tldrs_list" class="unstyled">
     {{#each tldrs}}
         {{> tldrs_list_item}}
@@ -52,13 +68,13 @@
 
 <template name="tldrs_list_item">
     <li class="{{wasRead}}">
-        {{slug}}
+        {{title}}
     </li>
 </template>
 
 
 
-<template name="read_tldr">
+<template name="current_tldr_reader">
     {{# if tldr}}
         <h4>{{tldr.title}}</h4>
         <ul class="nav nav-tabs">
@@ -71,5 +87,12 @@
             <li>{{this}}</li>
             {{/each}}
         </ul>
+
+        <div class="row">
+            <div class="span8">
+                <button class="btn">Thank!</button>
+                <button id="mark-unread" class="btn">Mark Unread</button>
+            </div> 
+        </div>
     {{/if}}
 </template>

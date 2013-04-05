@@ -4,6 +4,6 @@ Meteor.publish('tldrs', function () {
 
 Meteor.startup(function () {
 // Tldrs.update({}, {readBy: {}}) 
-//Tldrs.remove({})
+// Tldrs.remove({})
 });
 
