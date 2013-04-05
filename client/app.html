@@ -31,7 +31,11 @@
     </div>
         <div class="row">
             <div class="span12">
-                
+                <h3>Hi! This is a reader for the popular site <a href="http://tldr.io">tldr.io</a>.</h3>
+                <h4>All anonymous users have a shared read/unread list.  Please register/login to have your own list.</h4>
+                <p>Please don't spam the red button! It sends an http request to tldr.io and caches the results in mongo. Spamming it won't give you new data.</p>
+                <p>The source is on <a href="https://github.com/jhgaylor/meteor-tldr-reader" target="_blank">github</a></p>
+                <hr>
             </div>
         </div>
         <div class="row">
@@ -57,11 +61,17 @@
                 <button id="unread-items" class="btn {{#if activeSelector 'unread'}}active{{/if}}">Unread</button>
                 <button id="read-items" class="btn {{#if activeSelector 'read'}}active{{/if}}">Read</button>
             </div>
+            
+        </div>
+
+        <div class="span4">
             <button class="btn btn-danger" id="get_data">Get Data</button><br>
 
             Languages: <input id="language_selection" type="textbox" value="en, de">
         </div>
     </div>
+
+
     <ul id="tldrs_list" class="unstyled">
     {{#each tldrs}}
         {{> tldrs_list_item}}
