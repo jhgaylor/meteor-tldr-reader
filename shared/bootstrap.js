@@ -1,4 +1,41 @@
 Tldrs = new Meteor.Collection("tldrs");
+Filtersets = new Meteor.Collection("user_filtersets");
+
+Meteor.methods({
+    get_data: function (client) {
+        client.getLatestTldrs(10, function(e, data){
+            data.forEach(function (item) {
+                item.readBy = item.readyBy || []
+                Tldrs.insert(item)
+            })
+        });
+    },
+    tldr_mark_unread: function (tldr_id, user_id){
+      //removes a user from the list of users who has read a tldr
+      Tldrs.update(tldr_id, {$pull: {readBy:user_id}});
+    },
+    tldr_mark_read: function (tldr_id, user_id){
+      //adds a user to the list of users who has read a tldr
+      Tldrs.update(tldr_id, {$addToSet: {readBy:user_id}});
+    },
+    user_remove_filterset: function (filterset) {
+      Meteor.users.update(Meteor.userId(), {$pull: {'profile.filtersets': filterset}})
+    },
+    user_add_filterset: function (filterset) {
+      Meteor.users.update(Meteor.userId(), {$addToSet: {'profile.filtersets': filterset}})
+    },
+    // filters: function (args) {
+    //     return { $and: args }
+    // },
+    // buildFilters: function () {
+    //   and = function (selectors) {
+    //     return {$and: selectors}
+    //   };
+
+    // }
+    
+});
+
 
 
 Meteor.startup(function () {
@@ -115,31 +152,4 @@ Meteor.startup(function () {
         name: "jakegaylor",
         key: "8P5mD26fGye43y66K5p5"
     });
-});
-
-
-
-Meteor.methods({
-    get_data: function (client) {
-        client.getLatestTldrs(10, function(e, data){
-            data.forEach(function (item) {
-                item.readBy = item.readyBy || []
-                Tldrs.insert(item)
-            })
-        });
-    },
-    tldr_unread: function (tldr_id, user_id){
-        Tldrs.update(tldr_id, {$pull: {readBy:user_id}});
-    },
-    tldr_read: function (tldr_id, user_id){
-        Tldrs.update(tldr_id, {$addToSet: {readBy:user_id}});
-    },
-    filters: function (args) {
-        return { $and: args }
-    },
-    createLanguageFilter: function (languages) {
-        Session.set('language_filter', {'language.language': { $in: languages } });
-    }
-    
-    
 });

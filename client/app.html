@@ -40,10 +40,21 @@
         </div>
         <div class="row">
             <div class="span4">
+                <div class="span4">
+                    {{> user_filtersets_list}}
+                </div>
+
+                <div class="span4">
+                    {{> user_filterset}}
+                </div>
+               
+            </div>
+
+            <div class="span4">
                {{> tldrs_list}}
             </div>
             
-            <div class="span8">
+            <div class="span4">
                 {{> current_tldr_reader}}
             </div>
                 
@@ -57,9 +68,9 @@
         <div class="span4">
 
             <div class="btn-group">
-                <button id="all-items" class="btn {{#if activeSelector 'all'}}active{{/if}}">All</button>
-                <button id="unread-items" class="btn {{#if activeSelector 'unread'}}active{{/if}}">Unread</button>
-                <button id="read-items" class="btn {{#if activeSelector 'read'}}active{{/if}}">Read</button>
+                <button id="all-items" class="btn {{#if readFileterActiveSelector 'all'}}active{{/if}}">All</button>
+                <button id="unread-items" class="btn {{#if readFileterActiveSelector 'unread'}}active{{/if}}">Unread</button>
+                <button id="read-items" class="btn {{#if readFileterActiveSelector 'read'}}active{{/if}}">Read</button>
             </div>
             
         </div>
@@ -108,4 +119,27 @@
             </div> 
         </div>
     {{/if}}
+</template>
+
+<template name="user_filtersets_list">
+    <h4>My Filtersets</h4>
+    <ul>
+        {{#each filtersets}}
+            {{> user_filtersets_list_item }}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="user_filtersets_list_item">
+    <li>{{name}}</li>
+</template>
+
+<template name="user_filterset">
+    <h4>Filterset Settings</h4>
+    
+
+    <label>Name: <input type="text" id="current_filterset_name"></label>
+    <label>Filters: <input type="text" id="current_filterset_filters"></label>
+    <button class="btn btn-primary">Save</button> <button class="btn btn-success" id="new_filterset">New</button>
+
 </template>
