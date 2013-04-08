@@ -1,5 +1,5 @@
 Tldrs = new Meteor.Collection("tldrs");
-Filtersets = new Meteor.Collection("filtersets");
+Filters = new Meteor.Collection("filters");
 
 Meteor.methods({
     get_data: function (client) {
@@ -28,7 +28,18 @@ Meteor.methods({
       //I don't like this implementation.  a) its 2 db actions b) it causes a change in order
       Meteor.call('user_remove_filterset', target);
       Meteor.call('user_add_filterset', replacement);
+    },
+    create_filterset: function (user_id) {
+      var filterset = {
+        user: user_id,
+        filters: [],
+        rules: []
+      }
+      console.log(filterset)
+      Filters.insert(filterset)
     }
+
+
     // filters: function (args) {
     //     return { $and: args }
     // },

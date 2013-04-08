@@ -2,8 +2,8 @@ Meteor.publish('tldrs', function () {
     return Tldrs.find();
 });
 
-Meteor.publish('filtersets', function () {
-    return Filtersets.find();
+Meteor.publish('filters', function () {
+    return Filters.find();
 });
 
 

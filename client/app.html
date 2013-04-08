@@ -38,6 +38,16 @@
                 <hr>
             </div>
         </div>
+
+         <div class="row">
+            <div class="span12">
+                <h3>Filters</h3>
+                {{> filters}}
+                <hr>    
+            </div>
+
+        </div>
+
         <div class="row">
             <div class="span4">
                 <div class="span4">
@@ -157,4 +167,15 @@
     <label>Filters: <input type="text" id="current_filterset_filters"></label>
     <button class="btn btn-primary" id="save_filterset">Save</button> <button class="btn btn-success" id="new_filterset">New</button> <button class="btn btn-danger" id="delete_filterset">Delete</button>
 
+</template>
+
+
+<template name="filters">
+    {{# if filterset}}
+        <h4>Rules</h4>
+
+        <h4>Filters</h4>
+    {{else}}
+        <button class="btn" id="create_filterset">Create my Filterset</button>
+    {{/if}}
 </template>

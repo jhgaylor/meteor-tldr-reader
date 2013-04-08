@@ -130,3 +130,13 @@ Template.tldrs_list_item.helpers({
 });
 
 
+
+Template.filters.filterset = function () {
+  return Filters.findOne({user: Meteor.userId()})
+};
+
+Template.filters.events({
+  'click #create_filterset': function (event) {
+    Meteor.call('create_filterset', Meteor.userId())
+  }
+});
