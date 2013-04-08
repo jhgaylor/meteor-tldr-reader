@@ -1,4 +1,5 @@
-
+Meteor.startup(function () {
+    
   /**
    * Javascript client for the tldr.io API
    * MIT License, tldr.io
@@ -98,11 +99,8 @@
     this.callURL(url, method, callback, options);
   };
 
-  // Expose the client constructor in the global object
-  if (typeof window === 'undefined') {
-    
-  } else {
-    window.TldrioApiClient = Client;
-  }
-
-
+  c = new Client({
+      name: "jakegaylor",
+      key: "8P5mD26fGye43y66K5p5"
+  });
+});

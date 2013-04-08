@@ -122,12 +122,16 @@
 </template>
 
 <template name="user_filtersets_list">
-    <h4>My Filtersets</h4>
-    <ul>
-        {{#each filtersets}}
-            {{> user_filtersets_list_item }}
-        {{/each}}
-    </ul>
+    {{#if currentUser}}
+        <h4>My Filtersets</h4>
+        <ul>
+            {{#each filtersets}}
+                {{> user_filtersets_list_item }}
+            {{/each}}
+        </ul>
+    {{else }}
+        <p>Please login to access filtersets</p>
+    {{/if}}
 </template>
 
 <template name="user_filtersets_list_item">
@@ -140,6 +144,6 @@
 
     <label>Name: <input type="text" id="current_filterset_name"></label>
     <label>Filters: <input type="text" id="current_filterset_filters"></label>
-    <button class="btn btn-primary">Save</button> <button class="btn btn-success" id="new_filterset">New</button>
+    <button class="btn btn-primary" id="save_filterset">Save</button> <button class="btn btn-success" id="new_filterset">New</button> <button class="btn btn-danger" id="delete_filterset">Delete</button>
 
 </template>
