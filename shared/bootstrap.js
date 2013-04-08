@@ -147,7 +147,6 @@ Meteor.startup(function () {
   }
 
 
-
     c = new Client({
         name: "jakegaylor",
         key: "8P5mD26fGye43y66K5p5"
