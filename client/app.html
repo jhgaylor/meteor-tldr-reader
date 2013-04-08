@@ -42,7 +42,7 @@
          <div class="row">
             <div class="span12">
                 <h3>Filters</h3>
-                {{> filters}}
+                {{> filterset}}
                 <hr>    
             </div>
 
@@ -170,12 +170,23 @@
 </template>
 
 
-<template name="filters">
+<template name="filterset">
     {{# if filterset}}
         <h4>Rules</h4>
+        {{> rules}}
 
         <h4>Filters</h4>
+        {{> filters}}
+
     {{else}}
         <button class="btn" id="create_filterset">Create my Filterset</button>
     {{/if}}
+</template>
+
+<template name="rules">
+    
+</template>
+
+<template name="filters">
+
 </template>

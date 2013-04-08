@@ -1,4 +1,5 @@
 Meteor.subscribe('tldrs');
+Meteor.subscribe('filters');
 
 Meteor.startup(function () {
   Session.setDefault('read_filter', {});
@@ -131,12 +132,34 @@ Template.tldrs_list_item.helpers({
 
 
 
-Template.filters.filterset = function () {
+Template.filterset.filterset = function () {
   return Filters.findOne({user: Meteor.userId()})
 };
 
-Template.filters.events({
+Template.filterset.events({
   'click #create_filterset': function (event) {
     Meteor.call('create_filterset', Meteor.userId())
   }
 });
+
+
+Template.rules.events({
+  'click #new_filterset': function (event) {
+    var name = $('#current_filterset_name').val();
+    var filters = $('#current_filterset_filters').val();
+    var filterset = {name:name, filters:filters};
+    Meteor.call('user_add_filterset', filterset);
+    Session.set('current_filterset', filterset);
+
+  },
+  'click #save_filterset': function (event) {
+    var name = $('#current_filterset_name').val();
+    var filters = $('#current_filterset_filters').val();//$.parseJSON($('#current_filterset_filters').val());
+    var filterset = {name:name, filters:filters}
+    Meteor.call('user_update_filterset', Session.get('current_filterset'), filterset)
+    Session.set('current_filterset', filterset)
+  },
+  'click #delete_filterset': function (event) {
+    Meteor.call('user_remove_filterset', Session.get('current_filterset'))
+  },
+})
