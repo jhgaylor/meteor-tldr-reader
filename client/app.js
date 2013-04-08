@@ -39,7 +39,6 @@ Template.user_filtersets_list.filtersets = function () {
   if(!Meteor.loggingIn()){
     if(Meteor.user()){
       return Meteor.user().profile.filtersets;
-      
     }
   }
 };
@@ -52,10 +51,7 @@ Template.user_filtersets_list.events({
 
 Template.current_tldr_reader.tldr = function () {
   //return currently selected tldr for read panel
-  
   return Tldrs.findOne({_id:Session.get('current_tldr')});
-  
-    
 };
 
 //Event Handlers
