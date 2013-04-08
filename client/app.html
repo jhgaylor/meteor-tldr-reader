@@ -83,17 +83,28 @@
     </div>
 
 
-    <ul id="tldrs_list" class="unstyled">
-    {{#each tldrs}}
-        {{> tldrs_list_item}}
-    {{/each}}
-    </ul>
+    <table id="tldrs_list" class="table">
+        <thead>
+            <tr>
+                <th>Unread</th>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each tldrs}}
+                {{> tldrs_list_item}}
+            {{/each}}
+        </tbody>
+    </table>
 </template>
 
 <template name="tldrs_list_item">
-    <li class="{{wasRead}}">
-        {{title}}
-    </li>
+    <tr>
+        <td><i class="icon-ok {{wasRead}}"></td>
+        <td>{{title}}</td>
+        <td>{{author}}</td>
+    </tr>
 </template>
 
 

@@ -2,6 +2,11 @@ Meteor.publish('tldrs', function () {
     return Tldrs.find();
 });
 
+Meteor.publish('filtersets', function () {
+    return Filtersets.find();
+});
+
+
 // Meteor.publish('user_filtersets', function () {
 //     return Meteor.users.findOne({_id:this.userId}, {fields: {filtersets:1}});
 // }

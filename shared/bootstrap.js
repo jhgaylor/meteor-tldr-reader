@@ -1,5 +1,5 @@
 Tldrs = new Meteor.Collection("tldrs");
-Filtersets = new Meteor.Collection("user_filtersets");
+Filtersets = new Meteor.Collection("filtersets");
 
 Meteor.methods({
     get_data: function (client) {

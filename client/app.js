@@ -10,7 +10,8 @@ Meteor.startup(function () {
 Deps.autorun(function () {
     filterset = Session.get('current_filterset') || {name: "", filters: []}
     $('#current_filterset_name').val(filterset && filterset.name)
-    $('#current_filterset_filters').val(filterset && filterset.filters)//JSON.stringify(filterset.filters))  
+    $('#current_filterset_filters').val(filterset && filterset.filters)//JSON.stringify(filterset.filters))
+    Session.set('language_filter', {'language.language': { $in: Session.get('language_filter_value') } })  
 })
 
 Template.user_filterset.events({
@@ -31,7 +32,6 @@ Template.user_filterset.events({
   },
   'click #delete_filterset': function (event) {
     Meteor.call('user_remove_filterset', Session.get('current_filterset'))
-    
   },
 })
 
@@ -62,7 +62,7 @@ Template.current_tldr_reader.events({
 });
 
 Template.tldrs_list.tldrs = function () {
-  Session.set('language_filter', {'language.language': { $in: Session.get('language_filter_value') } })
+  
   //this probably needs to be refactored.  My application will probably depend on swapping the sets of filters
   //easily and quickly.  for instance, different 'columns' can have different filters (authors, terms, languages)
   
@@ -84,7 +84,7 @@ Template.tldrs_list.helpers({
 
 //Event Handlers
 Template.tldrs_list.events({
-  'click li': function (event) {
+  'click tr': function (event) {
     Session.set('current_tldr', this._id);
     Meteor.call('tldr_mark_read', this._id, Meteor.userId());
     console.log(this);
@@ -115,6 +115,10 @@ Template.tldrs_list.events({
   }
 });
 
+Template.tldrs_list_item.author = function () {
+    return this.creator.usernameForDisplay;
+}
+
 //Template helpers.
 Template.tldrs_list_item.helpers({
   wasRead: function (tldr) {  
@@ -122,6 +126,7 @@ Template.tldrs_list_item.helpers({
     var sel = {id:this._id, readBy: {$in: [Meteor.userId()]}};
     return Tldrs.findOne(sel) ? "read" : "unread"
   },
+
 });
 
 
