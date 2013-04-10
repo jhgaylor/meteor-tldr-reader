@@ -3,12 +3,12 @@ Filters = new Meteor.Collection("filters");
 
 Meteor.methods({
     get_data: function (client) {
-        client.getLatestTldrs(10, function(e, data){
-            data.forEach(function (item) {
-                item.readBy = item.readyBy || []
-                Tldrs.insert(item)
-            })
-        });
+      client.getLatestTldrs(10, function(e, data){
+          data.forEach(function (item) {
+              item.readBy = item.readyBy || [];
+              Tldrs.insert(item);
+          });
+      });
     },
     tldr_mark_unread: function (tldr_id, user_id){
       //removes a user from the list of users who has read a tldr
@@ -19,10 +19,10 @@ Meteor.methods({
       Tldrs.update(tldr_id, {$addToSet: {readBy:user_id}});
     },
     user_remove_filterset: function (filterset) {
-      Meteor.users.update(Meteor.userId(), {$pull: {'profile.filtersets': filterset}})
+      Meteor.users.update(Meteor.userId(), {$pull: {'profile.filtersets': filterset}});
     },
     user_add_filterset: function (filterset) {
-      Meteor.users.update(Meteor.userId(), {$addToSet: {'profile.filtersets': filterset}})
+      Meteor.users.update(Meteor.userId(), {$addToSet: {'profile.filtersets': filterset}});
     },
     user_update_filterset: function (target, replacement) {
       //I don't like this implementation.  a) its 2 db actions b) it causes a change in order
@@ -34,9 +34,9 @@ Meteor.methods({
         user: user_id,
         filters: [],
         rules: []
-      }
-      console.log(filterset)
-      Filters.insert(filterset)
+      };
+      console.log(filterset);
+      Filters.insert(filterset);
     }
 
 
@@ -49,7 +49,7 @@ Meteor.methods({
     //   };
 
     // }
-    
+
 });
 
 

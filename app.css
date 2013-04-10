@@ -1,9 +1,7 @@
 body {padding-top:60px;}
 
 #tldrs_list {
-    
     color: #222;
-    
 }
     #tldrs_list li{
         padding: .5em;
@@ -11,7 +9,6 @@ body {padding-top:60px;}
 
     #tldrs_list li.unread{
         font-weight: bold;
-        
     }
 
 .read{
